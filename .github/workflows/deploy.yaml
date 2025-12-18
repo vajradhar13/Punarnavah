@@ -1,27 +1,33 @@
-# name: Build and Push to Dockerhub and deploy to ec2
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#   push:
-#     branches:
-#       - main
-# jobs:
-#   build-push-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out the repo
-#         uses: actions/checkout@v2
-#       - name: Log in to Docker hub
-#         uses: docker/login-action@v3
-#         with:
-#           username: ${{ secrets.DOCKER_USERNAME }}
-#           password: ${{ secrets.DOCKER_PASSWORD }}
-#       - name: Build and Push Image
-#         uses: docker/build-push-action@v5
-#         with:
-#           context: .
-#           file: ./server/Dockerfile
-#           push: true
-#           tags: vajradhardummu/ci-cd-1:latest
-#       - name:
+name: Build and Push to Dockerhub and deploy to ec2
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: ["Check Backend Build Succeeds"] # 👈 Name of CI workflow
+    types:
+      - completed
+jobs:
+  build-push-deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Log in to Docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./server/Dockerfile
+          push: true
+          tags: vajradhardummu/purnarnavah-server:latest
+      - name: verify Docker image
+        run: docker pull vajradhardummu/purnarnavah-server:latest
