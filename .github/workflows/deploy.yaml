@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull vajradhardummu/punanavah-server:latest
+            sudo docker pull vajradhardummu/punarnavah-server:latest
             sudo docker stop punarnavah-server || true
             sudo docker rm punarnavah-server || true
             sudo docker run -d -p 8080:8080 \
