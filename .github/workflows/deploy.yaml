@@ -20,7 +20,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           file: ./server/Dockerfile
-          file: ./server/Dockerfile
           push: true
           tags: vajradhardummu/purnarnavah-server:latest
       - name: verify Docker image
