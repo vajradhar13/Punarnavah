@@ -26,5 +26,25 @@ jobs:
           push: true
           tags: vajradhardummu/purnarnavah-server:latest
 
-      - name: verify Docker image
+      - name: Verify Docker image
         run: docker pull vajradhardummu/purnarnavah-server:latest
+
+      - name: Deploy to ec2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull vajradhardummu/punarnavah-server:latest
+            sudo docker stop punarnavah-server || true
+            sudo docker rm punarnavah-server || true
+            sudo docker run -d -p 8080:8080 \
+              -e NODE_ENV=production \
+              -e PORT=${{ secrets.ENV_PORT }} \
+              -e DATABASE_URL=${{ secrets.ENV_DATABASE_URL }} \
+              -e CLIENT_URL=${{ secrets.ENV_CLIENT_URL }} \
+              -e JWT_SECRET=${{ secrets.ENV_JWT_SECRET }} \
+              -e SENDER_EMAIL=${{ secrets.ENV_SENDER_EMAIL }} \
+              -e SENDER_PASS=${{ secrets.ENV_SENDER_PASS }} \
+              --name punarnavah-server vajradhardummu/punarnavah-server:latest
