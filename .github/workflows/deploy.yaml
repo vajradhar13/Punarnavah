@@ -24,19 +24,19 @@ jobs:
           context: ./server
           file: ./server/Dockerfile
           push: true
-          tags: vajradhardummu/purnarnavah-server:latest
+          tags: vajradhardummu/punarnavah-server:latest
 
       - name: Verify Docker image
-        run: docker pull vajradhardummu/purnarnavah-server:latest
+        run: docker pull vajradhardummu/punarnavah-server:latest
 
       - name: Deploy to ec2
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull vajradhardummu/punarnavah-server:latest
+            sudo docker pull vajradhardummu/punanavah-server:latest
             sudo docker stop punarnavah-server || true
             sudo docker rm punarnavah-server || true
             sudo docker run -d -p 8080:8080 \
