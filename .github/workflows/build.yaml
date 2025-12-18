@@ -1,0 +1,32 @@
+# name: Check Backend Build Succeeds
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+# jobs: ## in simple words write the manual ec2 steps here
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # Checkout(simple words: clone the repo)
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Use Nodejs
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "20"
+
+#       - name: Install dependencies
+#         run: npm install
+#         working-directory: ./server
+
+#       - name: Generate prisma client
+#         run: npx prisma generate
+#         working-directory: ./server
+
+#       - name: Run the Typescript build
+#         run: npm run build
+#         working-directory: ./server
