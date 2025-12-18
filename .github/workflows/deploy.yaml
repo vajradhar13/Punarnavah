@@ -25,7 +25,7 @@ jobs:
       - name: Build and Push Image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          file: ./server/Dockerfile
           file: ./server/Dockerfile
           push: true
           tags: vajradhardummu/purnarnavah-server:latest
