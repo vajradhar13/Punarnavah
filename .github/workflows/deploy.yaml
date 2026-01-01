@@ -42,7 +42,10 @@ jobs:
              docker stop punarnavah-server || true
              docker rm punarnavah-server || true
             # Run the new container with environment variables
-             docker run -d -p 8080:8080 \
+             docker run -d \
+             --name punarnavah-server \
+             --restart unless-stopped \
+              -p 8080:8080 \
               -e NODE_ENV=production \
               -e PORT=${{ secrets.ENV_PORT }} \
               -e DATABASE_URL=${{ secrets.ENV_DATABASE_URL }} \
@@ -50,4 +53,4 @@ jobs:
               -e JWT_SECRET=${{ secrets.ENV_JWT_SECRET }} \
               -e SENDER_EMAIL=${{ secrets.ENV_SENDER_EMAIL }} \
               -e SENDER_PASS=${{ secrets.ENV_SENDER_PASS }} \
-              --name punarnavah-server vajradhardummu/punarnavah-server:latest
+              vajradhardummu/punarnavah-server:latest
