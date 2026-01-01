@@ -26,36 +26,55 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} /> 
-          <Route path="/home" element={<HomePage />} /> 
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage />} />
 
           {/* Auth Pages */}
-          <Route path="/signup" element={<Signup />} /> 
-          <Route path="/signin" element={<Signin />} /> 
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword/:token" element={<ResetPassword />} />
           <Route path="/profile" element={<ProfilePage />} />
 
           {/* Waste Request Pages */}
-          <Route path="/upload-req" element={<UploadReqPage />} /> 
-          <Route path="/waste-req" element={<WasteReqPage />} /> 
-          <Route path="/waste-req-overview/:id" element={<WasteReqOverviewPage />} />
+          <Route path="/upload-req" element={<UploadReqPage />} />
+          <Route path="/waste-req" element={<WasteReqPage />} />
+          <Route
+            path="/waste-req-overview/:id"
+            element={<WasteReqOverviewPage />}
+          />
           <Route path="/contribution/:id" element={<ContributionPage />} />
-          <Route path="/satisfied-waste/checkout/:id" element={<SatisfiedWasteCheckOutPage />} />
+          <Route
+            path="/satisfied-waste/checkout/:id"
+            element={<SatisfiedWasteCheckOutPage />}
+          />
 
           {/* Innovative Product Pages */}
-          <Route path="/upload-innovative-prod" element={<UploadInnovativeProdPage />} />
+          <Route
+            path="/upload-innovative-prod"
+            element={<UploadInnovativeProdPage />}
+          />
           <Route path="/innovative-prods" element={<InnovativeProds />} />
-          <Route path="/innovative-prod-overview/:id" element={<InnovativeProdOverview />}/>
-          <Route path="/innovative-prod/checkout/:id" element={<InnovativeProdCheckOutPage />} />
+          <Route
+            path="/innovative-prod-overview/:id"
+            element={<InnovativeProdOverview />}
+          />
+          <Route
+            path="/innovative-prod/checkout/:id"
+            element={<InnovativeProdCheckOutPage />}
+          />
 
           {/* Bulk Waste Pages */}
-          <Route path="/upload-bulk-waste" element={<UploadBulkWastePage />}/>
+          <Route path="/upload-bulk-waste" element={<UploadBulkWastePage />} />
           <Route path="/bulk-waste" element={<BulkWastePage />} />
-          <Route path="/bulk-waste-overview/:id" element={<BulkWasteOverviewPage />}/>
-          <Route path="/bulk-waste/checkout/:id" element={<BulkWasteCheckOutPage />} />
-          
-
+          <Route
+            path="/bulk-waste-overview/:id"
+            element={<BulkWasteOverviewPage />}
+          />
+          <Route
+            path="/bulk-waste/checkout/:id"
+            element={<BulkWasteCheckOutPage />}
+          />
         </Routes>
         <Toaster position="top-center" reverseOrder={false} />
       </BrowserRouter>
