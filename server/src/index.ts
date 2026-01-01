@@ -16,7 +16,6 @@ import bulkWasteOrdersRouter from "./routes/bulkWasteOrdersRoutes";
 import paymentRouter from "./routes/paymentRoutes";
 
 const app = express();
-
 const corsOptions = {
   origin: [
     process.env.CLIENT_URL,
