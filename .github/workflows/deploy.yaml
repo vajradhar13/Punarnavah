@@ -38,11 +38,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             # Pull the latest Docker image from Docker Hub
-            sudo docker pull vajradhardummu/punarnavah-server:latest
-            sudo docker stop punarnavah-server || true
-            sudo docker rm punarnavah-server || true
+             docker pull vajradhardummu/punarnavah-server:latest
+             docker stop punarnavah-server || true
+             docker rm punarnavah-server || true
             # Run the new container with environment variables
-            sudo docker run -d -p 8080:8080 \
+             docker run -d -p 8080:8080 \
               -e NODE_ENV=production \
               -e PORT=${{ secrets.ENV_PORT }} \
               -e DATABASE_URL=${{ secrets.ENV_DATABASE_URL }} \
