@@ -3,7 +3,6 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 require("dotenv").config();
-
 import userRouter from "./routes/userRoutes";
 import wasteReqRouter from "./routes/wasteReqRoutes";
 import contributionsRouter from "./routes/contributionsRoutes";
